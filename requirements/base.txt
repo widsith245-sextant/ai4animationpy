@@ -1,0 +1,16 @@
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+raylib>=4.0.0
+numpy>=1.21.0
+scipy>=1.7.0
+matplotlib>=3.10.3
+scikit-learn>=1.7.1
+einops>=0.8.1
+pygltflib==1.16.5
+pyscreenrec==0.6
+tqdm
+pyyaml
+onnx>=1.16.0
+onnxscript>=0.5.0
+onnxruntime>=1.18.0

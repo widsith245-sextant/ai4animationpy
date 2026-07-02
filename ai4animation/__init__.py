@@ -51,6 +51,15 @@ from .IK.FABRIK import FABRIK
 
 # Import classes
 from .Import.GLBImporter import GLB
+from .Engineering import (
+    ActorViewerConfig,
+    EngineeringAPI,
+    MotionEditorConfig,
+    ONNXExportConfig,
+    SkeletonDefinition,
+    UENNEBundleConfig,
+)
+from . import Engineering
 
 # Math classes - re-export for convenience
 from .Math import Quaternion, Rotation, Tensor, Transform, Vector3
@@ -79,6 +88,7 @@ __all__ = [
     "IK",
     "Import",
     "Components",
+    "Engineering",
     # Animation
     "Motion",
     "Hierarchy",
@@ -100,6 +110,13 @@ __all__ = [
     "FABRIK",
     # Import
     "GLB",
+    # Engineering
+    "EngineeringAPI",
+    "SkeletonDefinition",
+    "ActorViewerConfig",
+    "MotionEditorConfig",
+    "ONNXExportConfig",
+    "UENNEBundleConfig",
     # AI
     "DataSampler",
     "Generators",

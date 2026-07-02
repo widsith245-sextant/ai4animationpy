@@ -1,0 +1,11 @@
+{
+  "output_path": "D:\\ai4animationpy\\Artifacts\\UE\\geno-biped-locomotion\\geno-biped-locomotion.onnx",
+  "input_name": "input",
+  "output_name": "output",
+  "input_shape": [
+    1,
+    441
+  ],
+  "opset_version": 17,
+  "dynamic_batch": true
+}

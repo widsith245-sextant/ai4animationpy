@@ -14,9 +14,10 @@ setup(
     entry_points={
         "console_scripts": [
             "convert=ai4animation.Import.BatchConverter:main",
+            "ai4a=ai4animation.Engineering.CLI:main",
         ],
     },
-    python_requires=">=3.12",
+    python_requires=">=3.11",
     install_requires=[
         "torch>=2.0.0",
         "torchvision>=0.15.0",
@@ -31,5 +32,8 @@ setup(
         "pyscreenrec==0.6",
         "tqdm",
         "pyyaml",
+        "onnx>=1.16.0",
+        "onnxscript>=0.5.0",
+        "onnxruntime>=1.18.0",
     ],
 )
