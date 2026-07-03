@@ -56,8 +56,11 @@ from .Engineering import (
     EngineeringAPI,
     MotionEditorConfig,
     ONNXExportConfig,
+    SOMAExportResult,
     SkeletonDefinition,
+    UE_MANNY_TEST_MAPPING,
     UENNEBundleConfig,
+    export_skinned_soma_glb,
 )
 from . import Engineering
 
@@ -116,7 +119,10 @@ __all__ = [
     "ActorViewerConfig",
     "MotionEditorConfig",
     "ONNXExportConfig",
+    "SOMAExportResult",
+    "UE_MANNY_TEST_MAPPING",
     "UENNEBundleConfig",
+    "export_skinned_soma_glb",
     # AI
     "DataSampler",
     "Generators",

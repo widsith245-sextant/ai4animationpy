@@ -21,6 +21,8 @@ from .Config import (
     UENNEBundleConfig,
 )
 from .Programs import ActorViewerProgram, EmptyProgram, MotionEditorProgram
+from .SOMAInterop import export_skinned_soma_glb
+from .UEInterop import export_motion_for_ue_manny, export_soma_test_animation_npz_for_ue
 
 
 class EngineeringAPI:
@@ -292,3 +294,70 @@ class EngineeringAPI:
 
         manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
         return str(manifest_path)
+
+    @staticmethod
+    def export_motion_to_ue_manny_json(
+        motion_path: str,
+        output_path: str,
+        *,
+        bone_names: list[str] | tuple[str, ...] | None = None,
+        scale: float = 1.0,
+        root_translation_scale: float = 1.0,
+    ) -> str:
+        motion = EngineeringAPI.load_motion(
+            motion_path,
+            bone_names=bone_names,
+            scale=scale,
+        )
+        return export_motion_for_ue_manny(
+            motion,
+            output_path,
+            source_path=motion_path,
+            root_translation_scale=root_translation_scale,
+        )
+
+    @staticmethod
+    def export_soma_skinned_glb(
+        *,
+        skin_npz_path: str,
+        tpose_bvh_path: str,
+        output_glb_path: str,
+        animation_bvh_path: str | None = None,
+        output_motion_npz_path: str | None = None,
+        scale: float = 0.01,
+    ) -> dict[str, str | None]:
+        result = export_skinned_soma_glb(
+            skin_npz_path=skin_npz_path,
+            tpose_bvh_path=tpose_bvh_path,
+            output_glb_path=output_glb_path,
+            animation_bvh_path=animation_bvh_path,
+            output_motion_npz_path=output_motion_npz_path,
+            scale=scale,
+        )
+        return {
+            "glb_path": result.glb_path,
+            "motion_npz_path": result.motion_npz_path,
+        }
+
+    @staticmethod
+    def export_soma_test_animation_to_ue_json(
+        *,
+        test_animation_npz_path: str,
+        skin_npz_path: str,
+        output_path: str,
+        skeleton_asset: str,
+        preview_mesh_asset: str,
+        root_source_bone: str = "Hips",
+        rebase_root_translation_to_first_frame: bool = False,
+        root_translation_scale: float = 1.0,
+    ) -> str:
+        return export_soma_test_animation_npz_for_ue(
+            test_animation_npz_path=test_animation_npz_path,
+            skin_npz_path=skin_npz_path,
+            output_path=output_path,
+            skeleton_asset=skeleton_asset,
+            preview_mesh_asset=preview_mesh_asset,
+            root_source_bone=root_source_bone,
+            rebase_root_translation_to_first_frame=rebase_root_translation_to_first_frame,
+            root_translation_scale=root_translation_scale,
+        )

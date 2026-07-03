@@ -1,0 +1,11 @@
+{
+  "mesh": [
+    "skeleton"
+  ],
+  "skeleton": [
+    "add_compatible_skeleton",
+    "add_compatible_skeleton_soft",
+    "compatible_skeletons",
+    "get_reference_pose"
+  ]
+}

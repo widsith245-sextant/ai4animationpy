@@ -1,0 +1,15 @@
+{
+  "anim_pose_methods": [
+    "evaluate_animation_blueprint_with_input_pose",
+    "get_bone_names",
+    "get_bone_pose",
+    "get_curve_names",
+    "get_ref_bone_pose",
+    "get_ref_pose_relative_transform",
+    "get_relative_to_ref_pose_transform",
+    "get_relative_transform",
+    "get_socket_names",
+    "get_socket_pose",
+    "set_bone_pose"
+  ]
+}

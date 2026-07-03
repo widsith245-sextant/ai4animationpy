@@ -11,6 +11,16 @@ from ai4animation.Animation.RootModule import RootModule
 from ai4animation.Math import Vector3
 
 
+def _normalize_mirror_axis(axis: tuple[float, float, float] | Any):
+    if axis == (1.0, 0.0, 0.0):
+        return Vector3.Axis.XPositive
+    if axis == (0.0, 1.0, 0.0):
+        return Vector3.Axis.YPositive
+    if axis == (0.0, 0.0, 1.0):
+        return Vector3.Axis.ZPositive
+    return axis
+
+
 @dataclass(frozen=True)
 class SkeletonDefinition:
     """Stable skeleton contract used by editor, conversion, and export tooling."""
@@ -91,7 +101,7 @@ class SkeletonDefinition:
             modules.append(lambda motion: GuidanceModule(motion))
 
         if include_mirror:
-            axis = Vector3.Create(*self.mirror_axis)
+            axis = _normalize_mirror_axis(self.mirror_axis)
             correction = Vector3.Create(*self.mirror_correction_euler)
             modules.append(lambda motion: MirrorModule(motion, axis, correction))
 

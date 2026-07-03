@@ -199,7 +199,7 @@ class SkinnedMesh:
                 raylib_mesh.indices = ffi.cast(
                     "unsigned short*", triangles.buffer_info()[0]
                 )
-                raylib_mesh.boneIds = ffi.cast(
+                raylib_mesh.boneIndices = ffi.cast(
                     "unsigned char*", bone_ids.buffer_info()[0]
                 )
                 raylib_mesh.boneWeights = ffi.cast(
@@ -208,16 +208,23 @@ class SkinnedMesh:
                 raylib_mesh.boneCount = boneCount
                 raylib_mesh.vaoId = 0
 
-                # Allocate bone matrices
-                raylib_mesh.boneMatrices = MemAlloc(boneCount * ffi.sizeof(Matrix()))
-                for i in range(boneCount):
-                    raylib_mesh.boneMatrices[i] = MatrixIdentity()
+                # raylib 6 stores runtime skinning matrices on Model, not Mesh.
+                bone_matrix_bytes = boneCount * ffi.sizeof(Matrix())
+                bone_matrices = MemAlloc(bone_matrix_bytes)
+                np.frombuffer(
+                    ffi.buffer(bone_matrices, bone_matrix_bytes),
+                    dtype=np.float32,
+                ).reshape(boneCount, 4, 4)[:] = np.tile(
+                    np.eye(4, dtype=np.float32),
+                    (boneCount, 1, 1),
+                )
 
                 # Upload mesh with dynamic flag for bone updates
                 UploadMesh(ffi.addressof(raylib_mesh), True)
 
                 # Create Model for this chunk
                 raylib_model = load_model_from_mesh(raylib_mesh)
+                raylib_model.boneMatrices = bone_matrices
                 raylib_model.materials[0].maps[MATERIAL_MAP_DIFFUSE].color = WHITE
 
                 if mesh_texture is not None:
@@ -233,14 +240,13 @@ class SkinnedMesh:
                 self.Models.append(raylib_model)
 
                 # Cache numpy view of bone matrices for efficient updates
-                gpu_mesh = raylib_model.meshes[0]
                 matView = np.frombuffer(
                     ffi.buffer(
-                        gpu_mesh.boneMatrices,
-                        gpu_mesh.boneCount * ffi.sizeof(Matrix()),
+                        raylib_model.boneMatrices,
+                        bone_matrix_bytes,
                     ),
                     dtype=np.float32,
-                ).reshape(gpu_mesh.boneCount, 4, 4)
+                ).reshape(boneCount, 4, 4)
                 self.BoneMatrixViews.append(matView)
 
         # Precompute model-joint → scene entity index mapping.

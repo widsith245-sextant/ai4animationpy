@@ -1,6 +1,5 @@
 """Engineering facade exports for application-oriented integrations."""
 
-from .CLI import main
 from .Config import (
     ActorViewerConfig,
     MotionEditorConfig,
@@ -10,6 +9,15 @@ from .Config import (
 )
 from .Facade import EngineeringAPI
 from .Programs import ActorViewerProgram, EmptyProgram, MotionEditorProgram
+from .SOMAInterop import SOMAExportResult, export_skinned_soma_glb
+from .UEInterop import UE_MANNY_TEST_MAPPING
+
+
+def main(*args, **kwargs):
+    from .CLI import main as _main
+
+    return _main(*args, **kwargs)
+
 
 __all__ = [
     "main",
@@ -22,4 +30,7 @@ __all__ = [
     "ActorViewerProgram",
     "EmptyProgram",
     "MotionEditorProgram",
+    "SOMAExportResult",
+    "export_skinned_soma_glb",
+    "UE_MANNY_TEST_MAPPING",
 ]

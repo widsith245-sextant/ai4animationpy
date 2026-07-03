@@ -13,6 +13,11 @@
       "Name": "AI4AnimationNNE",
       "Type": "Runtime",
       "LoadingPhase": "Default"
+    },
+    {
+      "Name": "AI4AnimationNNEEditor",
+      "Type": "Editor",
+      "LoadingPhase": "Default"
     }
   ],
   "Plugins": [

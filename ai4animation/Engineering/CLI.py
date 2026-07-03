@@ -148,6 +148,43 @@ def main(argv: list[str] | None = None) -> int:
     )
     _add_definition_arguments(ue_manifest)
 
+    export_ue_clip = subparsers.add_parser(
+        "export-ue-clip",
+        help="Export one source motion into a Manny-oriented UE JSON import payload.",
+    )
+    export_ue_clip.add_argument("motion_path")
+    export_ue_clip.add_argument("output_path")
+    export_ue_clip.add_argument("--scale", default=1.0, type=float)
+    export_ue_clip.add_argument("--root-translation-scale", default=1.0, type=float)
+    export_ue_clip.add_argument("--definitions-path")
+    export_ue_clip.add_argument("--bone-names-attr", default="FULL_BODY_NAMES")
+    export_ue_clip.add_argument("--skeleton-name", default="ProjectSkeleton")
+    export_ue_clip.add_argument("--contact-threshold", default=0.25, type=float)
+
+    export_soma_glb = subparsers.add_parser(
+        "export-soma-glb",
+        help="Export SOMA_HUMAN_BODY skin + animation into a skinned GLB for UE import.",
+    )
+    export_soma_glb.add_argument("skin_npz_path")
+    export_soma_glb.add_argument("tpose_bvh_path")
+    export_soma_glb.add_argument("output_glb_path")
+    export_soma_glb.add_argument("--animation-bvh-path")
+    export_soma_glb.add_argument("--output-motion-npz-path")
+    export_soma_glb.add_argument("--scale", default=0.01, type=float)
+
+    export_soma_ue_json = subparsers.add_parser(
+        "export-soma-ue-json",
+        help="Export raw SOMA test animation NPZ into a UE direct-import JSON payload.",
+    )
+    export_soma_ue_json.add_argument("test_animation_npz_path")
+    export_soma_ue_json.add_argument("skin_npz_path")
+    export_soma_ue_json.add_argument("output_path")
+    export_soma_ue_json.add_argument("--skeleton-asset", required=True)
+    export_soma_ue_json.add_argument("--preview-mesh-asset", required=True)
+    export_soma_ue_json.add_argument("--root-source-bone", default="Hips")
+    export_soma_ue_json.add_argument("--rebase-root-translation-to-first-frame", action="store_true")
+    export_soma_ue_json.add_argument("--root-translation-scale", default=1.0, type=float)
+
     args = parser.parse_args(argv)
 
     if args.command == "convert":
@@ -265,4 +302,48 @@ def main(argv: list[str] | None = None) -> int:
         print(path)
         return 0
 
+    if args.command == "export-ue-clip":
+        skeleton = None
+        if args.definitions_path:
+            skeleton = _load_skeleton(args)
+        path = EngineeringAPI.export_motion_to_ue_manny_json(
+            args.motion_path,
+            args.output_path,
+            bone_names=None if skeleton is None else list(skeleton.bone_names),
+            scale=args.scale,
+            root_translation_scale=args.root_translation_scale,
+        )
+        print(path)
+        return 0
+
+    if args.command == "export-soma-glb":
+        result = EngineeringAPI.export_soma_skinned_glb(
+            skin_npz_path=args.skin_npz_path,
+            tpose_bvh_path=args.tpose_bvh_path,
+            output_glb_path=args.output_glb_path,
+            animation_bvh_path=args.animation_bvh_path,
+            output_motion_npz_path=args.output_motion_npz_path,
+            scale=args.scale,
+        )
+        print(json.dumps(result, indent=2))
+        return 0
+
+    if args.command == "export-soma-ue-json":
+        path = EngineeringAPI.export_soma_test_animation_to_ue_json(
+            test_animation_npz_path=args.test_animation_npz_path,
+            skin_npz_path=args.skin_npz_path,
+            output_path=args.output_path,
+            skeleton_asset=args.skeleton_asset,
+            preview_mesh_asset=args.preview_mesh_asset,
+            root_source_bone=args.root_source_bone,
+            rebase_root_translation_to_first_frame=args.rebase_root_translation_to_first_frame,
+            root_translation_scale=args.root_translation_scale,
+        )
+        print(path)
+        return 0
+
     raise ValueError(f"Unsupported command: {args.command}")
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
