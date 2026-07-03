@@ -1,0 +1,108 @@
+{
+  "count": 11,
+  "max_local_fk_mean_position_error_cm": 0.00017162262520287186,
+  "max_local_fk_position_error_cm": 0.0008252452244050801,
+  "max_global_fk_mean_position_error_cm": 8.851928578224033e-05,
+  "max_global_fk_position_error_cm": 0.0004968553548678756,
+  "results": [
+    {
+      "source_npz": "D:\\ai4animationpy\\Test_Animation\\output1.npz",
+      "suggested_asset_name": "SOMA_output1_Anim",
+      "num_frames": 241,
+      "local_fk_mean_position_error_cm": 0.00016637571388855577,
+      "local_fk_max_position_error_cm": 0.0007515171309933066,
+      "global_fk_mean_position_error_cm": 5.084351505502127e-05,
+      "global_fk_max_position_error_cm": 0.00013088637206237763
+    },
+    {
+      "source_npz": "D:\\ai4animationpy\\Test_Animation\\output2.npz",
+      "suggested_asset_name": "SOMA_output2_Anim",
+      "num_frames": 240,
+      "local_fk_mean_position_error_cm": 0.0001658682886045426,
+      "local_fk_max_position_error_cm": 0.0006970915710553527,
+      "global_fk_mean_position_error_cm": 6.054074765415862e-05,
+      "global_fk_max_position_error_cm": 0.00016845516802277416
+    },
+    {
+      "source_npz": "D:\\ai4animationpy\\Test_Animation\\output3 headache.npz",
+      "suggested_asset_name": "SOMA_output3_headache_Anim",
+      "num_frames": 309,
+      "local_fk_mean_position_error_cm": 0.00017136833048425615,
+      "local_fk_max_position_error_cm": 0.0008252452244050801,
+      "global_fk_mean_position_error_cm": 8.851928578224033e-05,
+      "global_fk_max_position_error_cm": 0.0004968553548678756
+    },
+    {
+      "source_npz": "D:\\ai4animationpy\\Test_Animation\\output_Bend over.npz",
+      "suggested_asset_name": "SOMA_output_Bend_over_Anim",
+      "num_frames": 252,
+      "local_fk_mean_position_error_cm": 0.00015347095904871821,
+      "local_fk_max_position_error_cm": 0.000749751168768853,
+      "global_fk_mean_position_error_cm": 4.93262596137356e-05,
+      "global_fk_max_position_error_cm": 0.0001325435732724145
+    },
+    {
+      "source_npz": "D:\\ai4animationpy\\Test_Animation\\output_defend.npz",
+      "suggested_asset_name": "SOMA_output_defend_Anim",
+      "num_frames": 87,
+      "local_fk_mean_position_error_cm": 0.00015449186321347952,
+      "local_fk_max_position_error_cm": 0.0006553067942149937,
+      "global_fk_mean_position_error_cm": 4.7611520130885765e-05,
+      "global_fk_max_position_error_cm": 0.00013733241939917207
+    },
+    {
+      "source_npz": "D:\\ai4animationpy\\Test_Animation\\output_headache standing.npz",
+      "suggested_asset_name": "SOMA_output_headache_standing_Anim",
+      "num_frames": 133,
+      "local_fk_mean_position_error_cm": 0.00016167348076123744,
+      "local_fk_max_position_error_cm": 0.0006561308982782066,
+      "global_fk_mean_position_error_cm": 5.624530967907049e-05,
+      "global_fk_max_position_error_cm": 0.00016271330241579562
+    },
+    {
+      "source_npz": "D:\\ai4animationpy\\Test_Animation\\output_lookback.npz",
+      "suggested_asset_name": "SOMA_output_lookback_Anim",
+      "num_frames": 303,
+      "local_fk_mean_position_error_cm": 0.00017071432375814766,
+      "local_fk_max_position_error_cm": 0.0006052909884601831,
+      "global_fk_mean_position_error_cm": 6.523165211547166e-05,
+      "global_fk_max_position_error_cm": 0.00017663325706962496
+    },
+    {
+      "source_npz": "D:\\ai4animationpy\\Test_Animation\\output_looking to robot.npz",
+      "suggested_asset_name": "SOMA_output_looking_to_robot_Anim",
+      "num_frames": 135,
+      "local_fk_mean_position_error_cm": 0.00015270641597453505,
+      "local_fk_max_position_error_cm": 0.0005937036476098001,
+      "global_fk_mean_position_error_cm": 5.050277104601264e-05,
+      "global_fk_max_position_error_cm": 0.00014820050273556262
+    },
+    {
+      "source_npz": "D:\\ai4animationpy\\Test_Animation\\output_shrugged.npz",
+      "suggested_asset_name": "SOMA_output_shrugged_Anim",
+      "num_frames": 205,
+      "local_fk_mean_position_error_cm": 0.00016368615615647286,
+      "local_fk_max_position_error_cm": 0.000614631047938019,
+      "global_fk_mean_position_error_cm": 6.0990754718659446e-05,
+      "global_fk_max_position_error_cm": 0.00018055450345855206
+    },
+    {
+      "source_npz": "D:\\ai4animationpy\\Test_Animation\\output_turnaround.npz",
+      "suggested_asset_name": "SOMA_output_turnaround_Anim",
+      "num_frames": 132,
+      "local_fk_mean_position_error_cm": 0.00017162262520287186,
+      "local_fk_max_position_error_cm": 0.0005803482490591705,
+      "global_fk_mean_position_error_cm": 6.026410119375214e-05,
+      "global_fk_max_position_error_cm": 0.00020009213767480105
+    },
+    {
+      "source_npz": "D:\\ai4animationpy\\Test_Animation\\Sleeping.npz",
+      "suggested_asset_name": "SOMA_Sleeping_Anim",
+      "num_frames": 159,
+      "local_fk_mean_position_error_cm": 0.00017017120262607932,
+      "local_fk_max_position_error_cm": 0.0006566073861904442,
+      "global_fk_mean_position_error_cm": 5.2076709835091606e-05,
+      "global_fk_max_position_error_cm": 0.00012472367961890996
+    }
+  ]
+}
